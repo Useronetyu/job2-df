@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 224 76% 33%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --hero-overlay: 217 91% 25%;
+    --severity-sedang: 45 93% 47%;
+    --severity-parah: 0 84% 60%;
+    --severity-ringan: 142 71% 45%;
+    --tip-blue: 199 89% 95%;
+    --tip-pink: 330 81% 95%;
+    --tip-green: 142 69% 95%;
+    --tip-orange: 25 95% 95%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 32% 25%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 32% 20%;
+    --input: 217 32% 20%;
+    --ring: 217 91% 60%;
+
+    --hero-overlay: 217 91% 20%;
+    --tip-blue: 217 50% 20%;
+    --tip-pink: 330 40% 20%;
+    --tip-green: 142 40% 15%;
+    --tip-orange: 25 50% 18%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .glass-navbar {
+    @apply bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-white/20;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(135deg, hsl(var(--hero-overlay) / 0.85) 0%, hsl(var(--primary) / 0.6) 100%);
+  }
+
+  .tab-container {
+    @apply bg-muted rounded-full p-1.5 inline-flex gap-1;
+  }
+
+  .tab-item {
+    @apply px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2;
+  }
+
+  .tab-item-active {
+    @apply bg-white dark:bg-slate-800 shadow-md text-foreground;
+  }
+
+  .tab-item-inactive {
+    @apply text-muted-foreground hover:text-foreground;
+  }
+
+  .tip-card {
+    @apply rounded-xl p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .tip-card-blue {
+    @apply bg-[hsl(var(--tip-blue))];
+  }
+
+  .tip-card-pink {
+    @apply bg-[hsl(var(--tip-pink))];
+  }
+
+  .tip-card-green {
+    @apply bg-[hsl(var(--tip-green))];
+  }
+
+  .tip-card-orange {
+    @apply bg-[hsl(var(--tip-orange))];
+  }
+
+  .severity-badge {
+    @apply px-3 py-1 rounded-md text-xs font-semibold;
+  }
+
+  .severity-sedang {
+    @apply bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400;
+  }
+
+  .severity-parah {
+    @apply bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400;
+  }
+
+  .severity-ringan {
+    @apply bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400;
+  }
+
+  .disease-card {
+    @apply bg-card rounded-2xl p-6 shadow-sm border border-border;
+  }
+
+  .disease-card-header {
+    @apply flex items-center gap-3 mb-4;
+  }
+
+  .symptom-checkbox {
+    @apply flex items-center gap-3 p-3 rounded-lg border border-border hover:bg-muted/50 transition-colors cursor-pointer;
+  }
+
+  .symptom-checkbox-checked {
+    @apply bg-primary/10 border-primary;
+  }
+
+  .cta-button {
+    @apply bg-secondary hover:bg-secondary/90 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl;
+  }
+
+  .result-card {
+    @apply bg-blue-50 dark:bg-slate-800 border-l-4 border-primary rounded-xl p-6;
+  }
+}
+
+/* Print Styles */
+@media print {
+  /* Hide non-essential elements */
+  .print\\:hidden,
+  nav,
+  footer,
+  .glass-navbar,
+  button:not(.print-visible),
+  .tab-container,
+  .hero-overlay,
+  section.relative.overflow-hidden {
+    display: none !important;
+  }
+
+  /* Reset backgrounds and colors for print */
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  .result-card {
+    background: white !important;
+    border: 1px solid #e5e7eb !important;
+    border-left: 4px solid #3B82F6 !important;
+    box-shadow: none !important;
+    padding: 24px !important;
+    margin: 0 !important;
+    page-break-inside: avoid;
+  }
+
+  .severity-badge {
+    background: #f3f4f6 !important;
+    color: #374151 !important;
+    border: 1px solid #d1d5db !important;
+  }
+
+  /* Show print header */
+  .print-header {
+    display: block !important;
+  }
+
+  .print-footer {
+    display: block !important;
+  }
+
+  /* Page setup */
+  @page {
+    margin: 2cm;
+    size: A4;
+  }
+
+  /* Ensure content fits on page */
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Typography adjustments */
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+
+  ul, ol {
+    page-break-inside: avoid;
+  }
+
+  /* Links */
+  a {
+    color: black !important;
+    text-decoration: none !important;
+  }
+
+  /* Hide dark mode specific styles */
+  .dark {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+  }
+}
